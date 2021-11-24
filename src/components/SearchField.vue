@@ -80,6 +80,8 @@ export default {
     background-color: rgb(133, 167, 39);
     font-size: 1rem;
     border: 0;
+    cursor: pointer;
+
     @media (min-width: 780px) {
       border-top-right-radius: 1rem;
       border-bottom-right-radius: 1rem;
@@ -87,6 +89,9 @@ export default {
 
     &--active {
       background-color: rgb(175, 221, 50);
+    }
+    &:hover {
+      background-color: rgb(233, 170, 54);
     }
   }
 }
