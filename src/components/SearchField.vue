@@ -1,6 +1,6 @@
 <template>
   <div class="c-searchField" :class="{ 'c-searchField--ready': ready }">
-    <div class="c-searchField__row">Type some GitGub usernames...</div>
+    <div class="c-searchField__row">Type some GitHub usernames...</div>
     <div class="c-searchField__row">
       <input
         type="text"
