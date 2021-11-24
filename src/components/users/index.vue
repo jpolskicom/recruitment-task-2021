@@ -1,20 +1,20 @@
 <template>
   <div class="c-users">
     <UserTabs />
-    <!-- <UserDetails />
-    <UserRepos /> -->
+    <UserDetails />
+    <!-- <UserRepos />  -->
   </div>
 </template>
 
 <script>
 import UserTabs from "./UserTabs";
-// import UserDetails from "./UserDetails";
+import UserDetails from "./UserDetails";
 // import UserRepos from "./UserRepos";
 
 export default {
   components: {
     UserTabs,
-    // UserDetails,
+    UserDetails,
     // UserRepos,
   },
 };
