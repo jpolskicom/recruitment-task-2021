@@ -5,11 +5,11 @@
       <input
         type="text"
         v-model="inputValue"
-        v-on:keyup.enter="accept()"
+        v-on:keyup.enter="fetchUsers()"
         class="c-searchField__input"
       />
       <button
-        v-on:click="accept()"
+        v-on:click="fetchUsers()"
         class="c-searchField__button"
         :class="{ 'c-searchField__button--active': inputValue.length > 0 }"
       >
@@ -20,24 +20,26 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
       ready: false,
+      inputValue: "",
     };
   },
-  computed: {
-    inputValue: {
-      get() {
-        return "test";
-      },
-      set() {
-        return "test";
-      },
-    },
-  },
   methods: {
-    accept() {},
+    ...mapActions({
+      fetchUsers: "users/fetchUsers",
+    }),
+    ...mapMutations({
+      setUserNames: "users/setUserNames",
+    }),
+  },
+  watch: {
+    inputValue(value) {
+      this.setUserNames(value);
+    },
   },
   mounted() {
     // for start animation purposes only
@@ -77,7 +79,7 @@ export default {
   }
   &__button {
     padding: 1rem 2rem;
-    background-color: rgb(133, 167, 39);
+    background-color: rgb(110, 138, 32);
     font-size: 1rem;
     border: 0;
     cursor: pointer;
