@@ -5,8 +5,10 @@
       :selected="selectedUserKey"
       v-on:select="selectedUserKey = $event"
     />
-    <UserDetails :data="getSelectedUser" />
-    <UserRepos />
+    <template v-if="getSelectedUser">
+      <UserDetails :data="getSelectedUser" />
+      <UserRepos :data="getReposByOwnerLogin(getSelectedUser.login)" />
+    </template>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ import UserTabs from "./UserTabs";
 import UserDetails from "./UserDetails";
 import UserRepos from "./UserRepos";
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -31,10 +33,25 @@ export default {
   computed: {
     ...mapGetters({
       getUsers: "users/getUsers",
+      getRepos: "repos/getRepos",
+      getReposByOwnerLogin: "repos/getReposByOwnerLogin",
     }),
     getSelectedUser() {
       let user = this.getUsers[this.selectedUserKey];
-      return user ? user : null;
+      return user ? user : {};
+    },
+  },
+  methods: {
+    ...mapActions({
+      fetchRepos: "repos/fetchRepos",
+    }),
+  },
+  watch: {
+    getSelectedUser: {
+      handler() {
+        this.fetchRepos(this.getSelectedUser.login);
+      },
+      deep: true,
     },
   },
 };

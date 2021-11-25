@@ -3,7 +3,7 @@
     <div class="c-userRepos__container">
       <a
         class="c-userRepos__row"
-        :href="repo.url"
+        :href="repo.html_url"
         target="_blank"
         v-for="(repo, key) in data"
         :key="`repo${key}`"
@@ -58,7 +58,7 @@ export default {
   }
   &__col {
     margin-right: 1rem;
-    min-width: 200px;
+    min-width: 300px;
     padding: 0.5rem 1rem;
     cursor: pointer;
   }
