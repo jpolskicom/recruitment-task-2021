@@ -10,7 +10,7 @@ export default {
         switch (typeof payload) {
             case 'string':
                 state.userNames = payload.split(' ');
-                state.users = state.users.filter(e => state.userNames.includes(e.login))
+                state.users = state.users.filter(e => state.userNames.includes(e.login.toLowerCase()))
                 break;
             default:
                 state.userNames = payload
