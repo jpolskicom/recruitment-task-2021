@@ -13,7 +13,7 @@
       <p>
         Contact:
         <br />
-        <a href="mailto:" v-if="data.email">email@test.pl</a>
+        <a href="mailto:" v-if="data.email">{{ data.email }}</a>
         <br />
         <a :href="data.html_url" target="_blank" v-if="data.html_url"
           >Visit profile</a
@@ -69,6 +69,7 @@ export default {
     border-radius: 50%;
     overflow: hidden;
     img {
+      max-width: 200px;
       width: 100%;
       height: auto;
       transition: transform 1s;

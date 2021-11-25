@@ -43,4 +43,23 @@ body {
   font-size: 16px;
   min-height: 100vh;
 }
+/* VUE transition animation */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.fadeLeft-enter-active,
+.fadeLeft-leave-active {
+  transition: all 0.5s;
+  transform: translateX(0);
+}
+.fadeLeft-enter,
+.fadeLeft-leave-to {
+  opacity: 0;
+  transform: translateX(-50px);
+}
 </style>

@@ -7,6 +7,7 @@
         v-model="inputValue"
         v-on:keyup.enter="fetchUsers()"
         class="c-searchField__input"
+        autofocus
       />
       <button
         v-on:click="fetchUsers()"

@@ -1,7 +1,11 @@
 <template>
-  <div class="c-users">
-    <UserTabs />
-    <UserDetails />
+  <div class="c-users" v-if="getUsers.length > 0">
+    <UserTabs
+      :items="getUsers.map((e) => e.login)"
+      :selected="selectedUserKey"
+      v-on:select="selectedUserKey = $event"
+    />
+    <UserDetails :data="getSelectedUser" />
     <UserRepos />
   </div>
 </template>
@@ -11,11 +15,27 @@ import UserTabs from "./UserTabs";
 import UserDetails from "./UserDetails";
 import UserRepos from "./UserRepos";
 
+import { mapGetters } from "vuex";
+
 export default {
+  data() {
+    return {
+      selectedUserKey: 0,
+    };
+  },
   components: {
     UserTabs,
     UserDetails,
     UserRepos,
+  },
+  computed: {
+    ...mapGetters({
+      getUsers: "users/getUsers",
+    }),
+    getSelectedUser() {
+      let user = this.getUsers[this.selectedUserKey];
+      return user ? user : null;
+    },
   },
 };
 </script>

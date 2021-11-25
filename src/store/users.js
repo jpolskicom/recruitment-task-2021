@@ -10,6 +10,7 @@ export default {
         switch (typeof payload) {
             case 'string':
                 state.userNames = payload.split(' ');
+                state.users = state.users.filter(e => state.userNames.includes(e.login))
                 break;
             default:
                 state.userNames = payload
@@ -24,7 +25,8 @@ export default {
     getUserNamesNotFetched(state) {
         return state.userNames.filter( e => !state.users.map( u => u.login).includes(e))
     },
-    getUserNamesString:(state) => state.users.join(' ')
+    getUserNamesString:(state) => state.users.join(' '),
+    getUsers: state => state.users
  },
  actions:{
     async fetchUsers({commit,state,getters}){

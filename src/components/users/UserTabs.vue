@@ -1,16 +1,16 @@
 <template>
   <div class="c-userTabs">
-    <div class="c-userTabs__container">
+    <transition-group name="fadeLeft" tag="div" class="c-userTabs__container">
       <div
-        class="c-userTabs__item"
-        :class="{ 'c-userTabs__item--active': key == selected }"
         v-for="(item, key) in items"
         :key="`tabItem${key}`"
+        class="c-userTabs__item"
+        :class="{ 'c-userTabs__item--active': key == selected }"
         v-on:click="$emit('select', key)"
       >
         {{ item }}
       </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -52,8 +52,6 @@ export default {
     }
     &--active {
       background-color: rgb(175, 221, 50);
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
     }
   }
 }
